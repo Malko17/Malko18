@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaya Sylvestre Georges - Mining Engineer | Petroleum Geophysicist</title>
+    <title>Gaya Sylvestre - Mining Engineer | Petroleum Geophysicist</title>
     <style>
         * {
             margin: 0;
@@ -18,28 +18,46 @@
             --dark: #0f172a;
             --light: #f8fafc;
             --gray: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --card-bg: #1e293b;
+            --shadow: rgba(0, 0, 0, 0.3);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--bg-primary);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px var(--shadow);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 20px var(--shadow);
         }
 
         .nav-container {
@@ -57,6 +75,12 @@
             color: var(--primary);
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -65,7 +89,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -74,12 +98,46 @@
             color: var(--primary);
         }
 
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--text-secondary);
+            border-radius: 50px;
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: var(--primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        [data-theme="dark"] .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
         .hero {
             margin-top: 80px;
             min-height: 90vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #98ebe1 0%, #4b8ea2 100%);
+            background: linear-gradient(135deg, #e3e4ea 0%, #4b93a2 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -175,6 +233,7 @@
             margin-bottom: 3rem;
             text-align: center;
             position: relative;
+            color: var(--text-primary);
         }
 
         .section-title::after {
@@ -195,17 +254,17 @@
         }
 
         .experience-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px var(--shadow);
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary);
         }
 
         .experience-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px var(--shadow);
         }
 
         .experience-header {
@@ -224,13 +283,14 @@
         }
 
         .experience-date {
-            color: var(--gray);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
         .experience-company {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
         .experience-tasks {
@@ -242,6 +302,7 @@
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text-secondary);
         }
 
         .experience-tasks li::before {
@@ -259,10 +320,10 @@
         }
 
         .skill-category {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px var(--shadow);
         }
 
         .skill-category h3 {
@@ -278,12 +339,12 @@
         }
 
         .skill-tag {
-            background: var(--light);
+            background: var(--bg-secondary);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
-            color: var(--dark);
-            border: 1px solid #e2e8f0;
+            color: var(--text-primary);
+            border: 1px solid var(--text-secondary);
         }
 
         .contact-info {
@@ -294,22 +355,27 @@
         }
 
         .contact-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px var(--shadow);
             transition: all 0.3s ease;
         }
 
         .contact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px var(--shadow);
         }
 
         .contact-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
         .contact-card a {
@@ -323,10 +389,11 @@
         }
 
         footer {
-            background: var(--dark);
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-primary);
             text-align: center;
             padding: 2rem;
+            box-shadow: 0 -2px 10px var(--shadow);
         }
 
         @keyframes fadeInUp {
@@ -356,6 +423,10 @@
             .btn-group {
                 flex-direction: column;
             }
+
+            .nav-right {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -363,12 +434,19 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">GS</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <div class="theme-toggle-slider">
+                        <span id="themeIcon">🌙</span>
+                    </div>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -523,6 +601,29 @@
     </footer>
 
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
